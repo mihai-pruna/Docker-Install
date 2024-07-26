@@ -10,9 +10,9 @@ pipeline {
 
         stage('Remote Connection') {
             steps {
-            withCredentials([sshUserPrivateKey(credentialsId: 'your-ssh-credentials-id', keyFileVariable: 'SSH_KEY_FILE')]) {
+            withCredentials([usernamePassword(credentialsId: 'your-ssh-credentials-id', usernameVariable: 'SSH_USERNAME', passwordVariable: 'SSH_PASSWORD')]) {
                     sh """
-                        ssh -i $SSH_KEY_FILE user@${params.REMOTE_HOST} '
+                        sshpass -p "$SSH_PASSWORD" ssh $SSH_USERNAME@${params.REMOTE_HOST} '
                             mkdir -p /path/to/install
                             cd /path/to/install
                             wget https://your-script-url/install.sh
