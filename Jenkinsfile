@@ -10,12 +10,12 @@ pipeline {
 
         stage('Remote Connection') {
             steps {
-                sshagent(['your-ssh-credentials-id']) {
+            withCredentials([sshUserPrivateKey(credentialsId: 'your-ssh-credentials-id', keyFileVariable: 'SSH_KEY_FILE')]) {
                     sh """
-                        ssh user@remote-host '
+                        ssh -i $SSH_KEY_FILE user@${params.REMOTE_HOST} '
                             mkdir -p /path/to/install
                             cd /path/to/install
-                            wget https://github.com/mihai-pruna/Docker-Install/blob/main/install-docker.sh
+                            wget https://your-script-url/install.sh
                             chmod +x install.sh
                             ./install.sh
                         '
