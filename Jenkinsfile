@@ -15,7 +15,7 @@ pipeline {
                         sshpass -p "$SSH_PASSWORD" ssh $SSH_USERNAME@${params.REMOTE_HOST} '
                             mkdir -p /path/to/install
                             cd /path/to/install
-                            wget https://your-script-url/install.sh
+                            wget https://github.com/mihai-pruna/Docker-Install/blob/main/install-docker.sh
                             chmod +x install.sh
                             ./install.sh
                         '
