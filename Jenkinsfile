@@ -16,8 +16,8 @@ pipeline {
                             mkdir -p /path/to/install
                             cd /path/to/install
                             wget https://github.com/mihai-pruna/Docker-Install/blob/main/install-docker.sh
-                            chmod +x install.sh
-                            ./install.sh
+                            chmod +x install-docker.sh
+                            ./install-docker.sh
                         '
                     """
                 }
